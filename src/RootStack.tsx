@@ -6,29 +6,27 @@ import BottomTabScreen from './tabs/BottomTabScreen'
 import SplashScreen from './components/splashscreen'
 
 const RootStack = () => {
-    const Stack=createNativeStackNavigator()
-    const[isLoading,setIsLoading]=React.useState(true);
-    useEffect(() => {
+  const Stack = createNativeStackNavigator()
+  const [isLoading, setIsLoading] = React.useState(true);
+  useEffect(() => {
     const timer = setTimeout(() => {
-      // navigation.replace('BottomTabScreen'); 
-      // replace = user cannot go back to splash
+
       setIsLoading(false);
-    }, 1000); // ⏱ 1 seconds
+    }, 1000); // 1 seconds
 
     return () => clearTimeout(timer);
   }, []);
   return (
-   <Stack.Navigator screenOptions={{headerShown:false ,animation:"fade"}} >
-    {
-    isLoading ? (
-      <Stack.Screen name="splash" component={SplashScreen} />
-    ) :  <Stack.Screen name='BottomTabScreen' component={BottomTabScreen}/>
-    }
-     
+    <Stack.Navigator screenOptions={{ headerShown: false, animation: "fade" ,contentStyle:{
+    
+    } }} >
+      {
+        isLoading ? (
+          <Stack.Screen name="splash" component={SplashScreen} />
+        ) : <Stack.Screen name='BottomTabScreen' component={BottomTabScreen} />
+      }
 
-   
-
-   </Stack.Navigator>
+    </Stack.Navigator>
   )
 }
 

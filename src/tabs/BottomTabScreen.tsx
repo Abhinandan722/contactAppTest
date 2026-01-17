@@ -7,15 +7,23 @@ import { Fontisto } from '@react-native-vector-icons/fontisto';
 import AntDesign from '@react-native-vector-icons/ant-design';
 import { FontAwesome } from '@react-native-vector-icons/fontawesome';
 import { Lucide } from '@react-native-vector-icons/lucide';
+import { hp } from '../utils/responsive';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const BottomTabScreen = () => {
     const Tab = createBottomTabNavigator();
+     const insets = useSafeAreaInsets();
     return (
         <Tab.Navigator screenOptions={{
             animation:"shift",
             headerShown: false,
             tabBarActiveTintColor: 'black',
             tabBarInactiveTintColor: '#777',
+            tabBarStyle: {
+              
+                   height: 60 + insets.bottom,
+          paddingBottom: insets.bottom,
+            },
         }}>
             <Tab.Screen name='HomeContact' component={HomeContact}
                 options={{
@@ -24,7 +32,7 @@ const BottomTabScreen = () => {
                     },
                     tabBarLabel: "Contacts",
                     tabBarLabelStyle:{
-fontFamily: 'MonaSans-Medium'                   }
+fontFamily: 'MonaSans-Medium'     }
 
                 }} />
             <Tab.Screen name='FavoriteContact' component={Favorite}

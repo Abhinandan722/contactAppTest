@@ -11,7 +11,7 @@ import { Text } from '@react-navigation/elements';
 function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
+      
       <NavigationContainer>
       <RootStack />
      

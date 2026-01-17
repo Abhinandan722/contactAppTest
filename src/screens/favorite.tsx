@@ -27,7 +27,6 @@ const Favorite = () => {
   const [loading, setLoading] = React.useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
 
-  // 🔹 Load favorites from AsyncStorage
   const loadFavorites = async (iscome:boolean) => {
     try {
       iscome?null: setLoading(true);
@@ -49,7 +48,6 @@ useFocusEffect(
   }, [])
 );
 
-  // 🔍 Search (same as Home)
   React.useEffect(() => {
     const timer = setTimeout(() => {
       if (!searchText.trim()) {
@@ -68,7 +66,7 @@ useFocusEffect(
     return () => clearTimeout(timer);
   }, [searchText, favorites]);
 
-  // ❤️ Toggle favorite (remove if exists)
+  
   const toggleFavorite = async (item: Contact) => {
     try {
       const updated = favorites.filter(f => f.recordID !== item.recordID);
@@ -92,15 +90,13 @@ console.log("Filtered Favorites:", filteredFavorites);
   return (
     <View style={{ flex: 1, backgroundColor: '#F5EFEA', padding: wp(4) }}>
       <Heading props="Favorites" />
-
       <SearchBar
         value={searchText}
         onChangeText={setSearchText}
         placeholder="Search favorites"
       />
 <Text style={styles.subHeading}>My Favorite</Text>
-   
-
+  
       <FlatList
         data={filteredFavorites}
         keyExtractor={item => item.recordID}

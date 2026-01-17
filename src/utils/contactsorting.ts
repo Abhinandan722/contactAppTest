@@ -24,12 +24,12 @@ export const sortContactsSmart = (contacts: Contact[]) => {
     const priorityA = getPriority(nameA);
     const priorityB = getPriority(nameB);
 
-    // 🔥 First sort by priority
+    //First sort by priority
     if (priorityA !== priorityB) {
       return priorityA - priorityB;
     }
 
-    // 🔤 If same category → alphabetical
+    //If same category → alphabetical
     return nameA.localeCompare(nameB, 'en', { sensitivity: 'base' });
   });
 };

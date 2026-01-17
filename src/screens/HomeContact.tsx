@@ -3,12 +3,8 @@
 import {
   ActivityIndicator,
   FlatList,
-  PermissionsAndroid,
-  Platform,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useCallback } from 'react';
@@ -88,18 +84,16 @@ const HomeContact = () => {
   };
   React.useEffect(() => {
     getContacts();
-
   }, []);
 
   useFocusEffect(
     useCallback(() => {
-
       loadFavorites();
     }, [])
   );
 
   const addtofav = async (item: Contact) => {
-    console.log("1111111111111111111", item)
+    // console.log("1111111111111111111", item)
 
     try {
 
@@ -109,15 +103,15 @@ const HomeContact = () => {
       const exists = favs.some(fav => fav.recordID === item.recordID);
       //  console.log("fav 1111111111111",exists)
       if (exists) {
-        // ❌ remove
+        //remove
         favs = favs.filter(fav => fav.recordID !== item.recordID);
       } else {
-        // ✅ add
+        //add
         favs.push(item);
       }
 
       await AsyncStorage.setItem(FAVORITE_KEY, JSON.stringify(favs));
-      setFavorites(favs); // update UI immediately
+      setFavorites(favs); 
       // console.log('Favorite contacts updated',favs);
     } catch (e) {
       console.log('Error saving favorite', e);
@@ -128,27 +122,19 @@ const HomeContact = () => {
     return favorites.some(fav => fav.recordID === id);
   };
 
-
-
   return (
     <View style={{ flex: 1, backgroundColor: '#F5EFEA', padding: wp(4) }}>
       <Heading props={"Contacts"} />
       <SearchBar value={searchText}
         onChangeText={setSearchText}
         placeholder="Search contacts" />
-
       <Text style={styles.subHeading}>My Contact</Text>
-
-
-
-
 
       {loading ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size={25} color={"black"} />
-          <Text style={{fontSize:16}}>Loading contacts...</Text>
+          <Text style={{ fontSize: 16 }}>Loading contacts...</Text>
         </View>
-
       ) : null}
 
       <FlatList
@@ -158,7 +144,7 @@ const HomeContact = () => {
         initialNumToRender={15}
         maxToRenderPerBatch={20}
         onRefresh={onRefresh}
-        ListEmptyComponent={loading?null:<Notdata props={"No Data Found"} />}
+        ListEmptyComponent={loading ? null : <Notdata props={"No Data Found"} />}
 
         contentContainerStyle={{ paddingVertical: hp(1) }}
         renderItem={({ item }) => (
