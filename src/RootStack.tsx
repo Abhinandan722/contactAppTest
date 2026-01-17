@@ -23,7 +23,8 @@ const RootStack = () => {
       {
         isLoading ? (
           <Stack.Screen name="splash" component={SplashScreen} />
-        ) : <Stack.Screen name='BottomTabScreen' component={BottomTabScreen} />
+        ) :
+         <Stack.Screen name='BottomTabScreen' component={BottomTabScreen} />
       }
 
     </Stack.Navigator>
